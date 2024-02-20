@@ -2,7 +2,7 @@ let news = [];
 
 const getLatesNews = async () => {
     const url = new URL(
-        `https://creative-tartufo-aec936.netlify.app`
+        `https://creative-tartufo-aec936.netlify.app/top-headlines?`
         );
     const response = await fetch(url);
     const data = await response.json();
