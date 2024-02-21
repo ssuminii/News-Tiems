@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/4e5b2f86bb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./style.css">
 
 </head>
@@ -18,6 +19,12 @@
 
             <span onclick="openNav()">
                 <img class="menu-bar" src="./assets/navigation-bar.png" alt="">
+            </span>
+            
+            <img class="search" src="./assets/search.png" alt="" onclick="openSearchBox()">
+            <span id="input-area">
+                <input type="text" id="search-input" placeholder="search..." />
+                <button class="search-button" onclick="searchNews()">Go</button>
             </span>
 
             <div class="head-line">

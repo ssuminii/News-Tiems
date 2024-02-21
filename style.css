@@ -3,10 +3,6 @@
     margin: 0;
 }
 
-body {
-    font-family: "Nanum Myeongjo", serif;
-}
-
 button:focus,
 button:active,
 input:focus,
@@ -17,12 +13,52 @@ textarea:active {
     box-shadow: none;
 }
 
-.menu-bar {
+.menu-bar,
+.search {
     display: inline-block;
     width: 14px;
     height: 14px;
     cursor: pointer;
+    margin-right: 5px;
 }
+
+#input-area {
+    display: none;
+}
+
+.search-button {
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Nanum Myeongjo", serif;
+  font-size: 13px;
+  line-height: 29px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  width: 30px;
+}
+
+.search-button:hover {
+  background-color: #f7fafa;
+}
+
+.search-button:focus {
+  border-color: #008296;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  outline: 0;
+}
+
+
 
 .sidenav {
     display: flex;
@@ -43,6 +79,7 @@ textarea:active {
 
 /* The navigation menu links */
 .sidenav button {
+    font-family: "Nanum Myeongjo", serif;
     width: 100%;
     background-color: white;
     padding: 8px 8px 8px 32px;
@@ -116,6 +153,7 @@ textarea:active {
     }
     
     .menus button {
+        font-family: "Nanum Myeongjo", serif;
         border: none;
         background: none;
         margin: 5px;
@@ -127,6 +165,7 @@ textarea:active {
     }
 
     .sidenav button {
+        font-family: "Nanum Myeongjo", serif;
         font-size: 22px;
     }
     
@@ -134,6 +173,4 @@ textarea:active {
         max-width: 100%;
         max-height: 250px;
     }
-   
-    
 }

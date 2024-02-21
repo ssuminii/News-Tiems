@@ -39,6 +39,16 @@ function closeNav() {
   document.getElementById('mySidenav').style.width = '0';
 }
 
+// search Button
+const openSearchBox = () => {
+    let inputArea = document.getElementById("input-area");
+    if (inputArea.style.display === "inline") {
+      inputArea.style.display = "none";
+    } else {
+      inputArea.style.display = "inline";
+    }
+  };
+
 // 1. 버튼에 클릭 이벤트 주기
 // 2. 카테고리별 뉴스 가져오기
 // 3. 그 뉴스 보여주기
