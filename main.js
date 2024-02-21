@@ -29,3 +29,16 @@ const render = () => {
 };
 
 getLatesNews();
+
+// side navigation
+function openNav() {
+  document.getElementById('mySidenav').style.width = '100%';
+}
+
+function closeNav() {
+  document.getElementById('mySidenav').style.width = '0';
+}
+
+// 1. 버튼에 클릭 이벤트 주기
+// 2. 카테고리별 뉴스 가져오기
+// 3. 그 뉴스 보여주기
