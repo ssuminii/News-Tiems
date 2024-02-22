@@ -1,15 +1,40 @@
 let newsList = [];
+let url = new URL(`https://creative-tartufo-aec936.netlify.app/top-headlines?`);
 
-const getLatesNews = async () => {
-    const url = new URL(
-        `https://creative-tartufo-aec936.netlify.app/top-headlines?`
-        );
+// 메뉴 버튼에 클릭 이벤트 주기
+const menus = document.querySelectorAll('.menus button');
+menus.forEach(menu => menu.addEventListener('click', (event) => getNewsByCategory(event)));
+
+// 중복 코드
+const getNews = async () => {
     const response = await fetch(url);
     const data = await response.json();
     newsList = data.articles;
     render();
+}
+
+// main news 가져오기
+const getLatesNews = async () => {
+    url = new URL(`https://creative-tartufo-aec936.netlify.app/top-headlines?`);
+    getNews();
     console.log('news', newsList);
 }
+
+// 카테고리별 뉴스 가져오기
+const getNewsByCategory = async (event) => {
+    const category = event.target.textContent.toLowerCase();
+    console.log('category', category);
+    url = new URL(`https://creative-tartufo-aec936.netlify.app/top-headlines?category=${category}`);
+    getNews();
+}
+
+// 키워드별 검색
+const getNewsByKeyword = async () => {
+    const keyword = document.getElementById('search-input').value;
+    console.log('keyword', keyword);
+    url = new URL(`https://creative-tartufo-aec936.netlify.app/top-headlines?q=${keyword}`);
+    getNews();
+} 
 
 const render = () => {
     const newsHTML = newsList.map(
@@ -48,7 +73,3 @@ const openSearchBox = () => {
       inputArea.style.display = "inline";
     }
   };
-
-// 1. 버튼에 클릭 이벤트 주기
-// 2. 카테고리별 뉴스 가져오기
-// 3. 그 뉴스 보여주기
