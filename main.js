@@ -1,6 +1,12 @@
 let newsList = [];
 let url = new URL(`https://creative-tartufo-aec936.netlify.app/top-headlines?`);
 
+// pagination
+let totalResults = 0;
+let page = 1;
+const pageSize = 10;
+const groupSize = 5;
+
 // 메뉴 버튼에 클릭 이벤트 주기
 const menus = document.querySelectorAll('.menus button');
 menus.forEach(menu => menu.addEventListener('click', (event) => getNewsByCategory(event)));
@@ -9,7 +15,12 @@ menus.forEach(menu => menu.addEventListener('click', (event) => getNewsByCategor
 // error handling
 const getNews = async () => {
   try {
+    // &page = page
+    url.searchParams.set('page', page);
+    url.searchParams.set('pageSize', pageSize);
+
     const response = await fetch(url);
+
     const data = await response.json();
 
     if (response.status === 200) {
@@ -17,7 +28,9 @@ const getNews = async () => {
         throw new Error('No result for this search');
       }
       newsList = data.articles;
+      totalResults = data.totalResults;
       render();
+      paginationRender();
     } else {
       throw new Error(data.message);
     }
@@ -26,14 +39,6 @@ const getNews = async () => {
     errorRender(error.message);
   }
 };
-
-// 중복 코드
-// const getNews = async () => {
-//     const response = await fetch(url);
-//     const data = await response.json();
-//     newsList = data.articles;
-//     render();
-// }
 
 // main news 가져오기
 const getLatesNews = async () => {
@@ -82,6 +87,43 @@ const errorRender = (errorMessage) => {
   </div>`;
 
   document.getElementById('news-board').innerHTML = errorHTML;
+};
+
+// pagination
+const paginationRender = () => {
+  // totalResults, page, pageSize, groupSize
+  
+  // totalPage
+  const totalPage = Math.ceil(totalResults / pageSize);
+
+  // pageGroup
+  const pageGroup = Math.ceil(page / groupSize);
+
+  // lastPage
+  const lastPage = pageGroup * groupSize;
+  // lastPage < groupSize -> lastpage = totalpage
+  if (lastPage > totalPage) {
+    lastPage = totalPage;
+  } 
+
+  // firstPage
+  const firstPage = (lastPage - (groupSize - 1)) <= 0 ? 1 : (lastPage - (groupSize - 1));
+
+  let paginationHTML = `<li class="page-item ${page===1?'disabled':''}" onclick="moveToPage(${page-1})"><a class="page-link" href="#">Previous</a></li>`;
+
+  for(let i = firstPage; i <= lastPage; i++) {
+    paginationHTML += `<li class="page-item ${i===page?'active':''}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`
+  }
+  paginationHTML += `<li class="page-item" onclick="moveToPage(${page+1})"><a class="page-link" href="#">Next</a></li>`;
+
+  document.querySelector(".pagination").innerHTML = paginationHTML;
+};
+
+// pageNum = ${i}
+const moveToPage = (pageNum) => {
+  console.log('move to page', pageNum);
+  page = pageNum;
+  getNews();
 };
 
 getLatesNews();

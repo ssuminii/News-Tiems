@@ -138,6 +138,35 @@ textarea:active {
     font-size: 50px;
 }
 
+.page-link {
+    color: #999;
+    background-color: #fff;
+    border: none;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: black;
+    font-weight: bold;
+    background-color: #fff;
+}
+
+.page-link:focus,
+.page-link:hover {
+    color: black;
+    background-color: none;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.disabled {
+    display: none;
+}
 
 /*  ≧ 768px (Desktop) */
 @media screen and (min-width: 768px) {
